@@ -1,2 +1,2 @@
-# Real-Tournament
+# RealTournament
 A literal take on Unreal Tournament
