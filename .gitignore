@@ -2,6 +2,8 @@
 bin/
 build/
 packages/
+EngineContent/
+ExportedContent/
 
 # Intermediate files
 .idea/workspace.xml
@@ -13,6 +15,7 @@ packages/
 *.suo
 *.user
 *.aps
+*.db
 
 # Assets
 *.blend1

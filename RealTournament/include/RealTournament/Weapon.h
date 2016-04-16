@@ -1,32 +1,34 @@
 // Weapon.h
 #pragma once
 
-#include <Core/Memory/Pointers/Weak.h>
+#include <Engine/Handle.h>
 #include <Engine/Entity.h>
-#include <Engine/Components/StaticMeshComponent.h>
+#include <Engine/Components/Rendering/StaticMeshComponent.h>
 
-namespace RealTournament
+namespace real_tournament
 {
-	class Weapon : public Willow::Entity
+	using namespace willow;
+
+	class Weapon : public Entity
 	{
 		///////////////////////
 		///   Information   ///
 	public:
 
 		REFLECTABLE_CLASS
-		EXTENDS(Willow::Entity)
+		EXTENDS(Entity)
 
 		//////////////////
 		///   Fields   ///
 	public:
 
 		/** The model to use for the weapon. */
-		Weak<Willow::StaticMeshComponent> Model;
+		Handle<StaticMeshComponent> model;
 
 		/** The ammount of ammo this weapon can contain. */
-		uint32 MagazineSize = 32;
+		uint32 magazine_size = 32;
 
 		/** The ammount of ammo currently loaded in this weapon. */
-		uint32 Ammo = MagazineSize;
+		uint32 ammo = magazine_size;
 	};
 }

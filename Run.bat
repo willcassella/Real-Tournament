@@ -1,0 +1,1 @@
+bin\x64\Release\Client RealTournament ExportedContent\%1
