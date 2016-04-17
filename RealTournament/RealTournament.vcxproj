@@ -157,9 +157,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\RealTournament\RealTournamentPlayer.h" />
+    <ClInclude Include="include\RealTournament\SpawnPad.h" />
     <ClInclude Include="include\RealTournament\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\RealTournamentPlayer.cpp" />
+    <ClCompile Include="source\SpawnPad.cpp" />
     <ClCompile Include="source\Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
