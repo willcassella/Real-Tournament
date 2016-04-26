@@ -26,8 +26,11 @@ namespace real_tournament
 			/** Resets the timer to 'spawn_timer_start'. */
 			Reset_Timer,
 			
-			/** The timer is not reset. */
-			Keep_Timer
+			/** The timer continues where it is. */
+			Keep_Timer,
+
+			/** The timer is set to '0'. */
+			Stop_Timer,
 		};
 
 		//////////////////
@@ -37,13 +40,13 @@ namespace real_tournament
 		/** The type of Entity to spawn. */
 		SubClassOf<Entity> spawn_type;
 
-		/** The offset to spawn this object at. */
+		/** The location offset to spawn this object at. */
 		Vec3 spawn_offset = {0, 3, 0};
 
 		/** The amount of time that passes between each spawn ('0' for no timer, only spawns when told). */
 		float spawn_timer_start = 0.f;
 
-		/** The amount of time until the object spawns. */
+		/** The amount of time until the object spawns ('0' to disable). */
 		float spawn_timer = 0.f;
 
 		///////////////////

@@ -27,6 +27,10 @@ namespace real_tournament
 
 		case Keep_Timer:
 			break;
+
+		case Stop_Timer:
+			this->spawn_timer = 0;
+			break;
 		}
 
 		if (!this->spawn_type.is_null())
@@ -44,7 +48,7 @@ namespace real_tournament
 	void SpawnPad::on_initialize()
 	{
 		this->Base::on_initialize();
-		this->get_world().events.Bind("update", *this, &SpawnPad::on_update);
+		this->get_world().bind_event("update", *this, &SpawnPad::on_update);
 	}
 
 	void SpawnPad::on_update(float dt)
@@ -57,7 +61,7 @@ namespace real_tournament
 		this->spawn_timer -= dt;
 		if (this->spawn_timer <= 0)
 		{
-			this->perform_spawn(Reset_Timer);
+			this->perform_spawn(Stop_Timer);
 		}
 	}
 }

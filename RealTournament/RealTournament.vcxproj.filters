@@ -14,10 +14,19 @@
     <ClInclude Include="include\RealTournament\Weapon.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\RealTournament\RealTournamentPlayer.h">
+    <ClInclude Include="include\RealTournament\SpawnPad.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\RealTournament\SpawnPad.h">
+    <ClInclude Include="include\RealTournament\Shotgun.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RealTournament\Player.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RealTournament\Projectile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RealTournament\ShotgunProjectile.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -28,7 +37,16 @@
     <ClCompile Include="source\SpawnPad.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="source\RealTournamentPlayer.cpp">
+    <ClCompile Include="source\Shotgun.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Projectile.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ShotgunProjectile.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

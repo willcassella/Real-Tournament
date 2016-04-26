@@ -1,4 +1,4 @@
-// Weapon.cpp
+// Weapon.cpp - Copyright 2013-2016 Will Cassella, All Rights Reserved
 
 #include "../include/RealTournament/Weapon.h"
 

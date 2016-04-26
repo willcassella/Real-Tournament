@@ -1,6 +1,7 @@
-// Weapon.h
+// Weapon.h - Copyright 2013-2016 Will Cassella, All Rights Reserved
 #pragma once
 
+#include <Core/Reflection/SubClassOf.h>
 #include <Engine/Handle.h>
 #include <Engine/Entity.h>
 #include <Engine/Components/Rendering/StaticMeshComponent.h>
@@ -25,10 +26,19 @@ namespace real_tournament
 		/** The model to use for the weapon. */
 		Handle<StaticMeshComponent> model;
 
+		/** The type of projectile to fire. */
+		SubClassOf<Entity> projectile;
+
 		/** The ammount of ammo this weapon can contain. */
 		uint32 magazine_size = 32;
 
 		/** The ammount of ammo currently loaded in this weapon. */
 		uint32 ammo = magazine_size;
+
+		//////////////////
+		///   Fields   ///
+	public:
+
+		virtual void fire() = 0;
 	};
 }
