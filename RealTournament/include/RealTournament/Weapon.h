@@ -5,6 +5,7 @@
 #include <Engine/Handle.h>
 #include <Engine/Entity.h>
 #include <Engine/Components/Rendering/StaticMeshComponent.h>
+#include <Engine/Components/Rendering/AnimationComponent.h>
 
 namespace real_tournament
 {
@@ -25,6 +26,9 @@ namespace real_tournament
 
 		/** The model to use for the weapon. */
 		Handle<StaticMeshComponent> model;
+
+		/** Animation to use for the weapon. */
+		Handle<AnimationComponent> animation;
 
 		/** The type of projectile to fire. */
 		SubClassOf<Entity> projectile;

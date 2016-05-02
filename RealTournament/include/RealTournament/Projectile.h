@@ -21,7 +21,7 @@ namespace real_tournament
 	public:
 
 		/** The amount of damage this projectile does when it hits a Player. */
-		float damage = 10;
+		float damage = 50;
 
 		/** The velocity of this projectile. */
 		Vec3 velocity;
@@ -35,8 +35,7 @@ namespace real_tournament
 
 		void on_initialize() override;
 
-		/** Handles collision with player. DOES NOT handle destruction of projectile or any other collision behavior. */
-		void on_collision(Entity& collidee) override;
+		void on_collision(Entity& entity, const CollisionData& data) override;
 
 	private:
 

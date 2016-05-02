@@ -18,15 +18,18 @@ namespace real_tournament
 	void Projectile::on_initialize()
 	{
 		this->Base::on_initialize();
-		this->velocity = { 0.1f, 0, 0 };
+		this->velocity = { 0.08f, 0, 0 };
 		this->get_world().bind_event("update", *this, &Projectile::on_update);
 	}
 
-	void Projectile::on_collision(Entity& collidee)
+	void Projectile::on_collision(Entity& entity, const CollisionData& data)
 	{
-		if (auto player = Cast<Player>(collidee))
+		this->Base::on_collision(entity, data);
+
+		if (auto player = Cast<Player>(entity))
 		{
-			player->health -= this->damage;
+			player->apply_damage(this->damage);
+			this->destroy();
 		}
 	}
 

@@ -36,11 +36,25 @@ namespace real_tournament
 		/** The character movement component. */
 		Handle<CharacterControllerComponent> character_movement;
 
-		/** The amount of health this character has. */
-		float health = 100;
-
 		///////////////////
 		///   Methods   ///
+	public:
+
+		float get_health() const
+		{
+			return this->_health;
+		}
+
+		void apply_damage(float damage)
+		{
+			this->_health -= damage;
+
+			if (this->_health < 0)
+			{
+				this->destroy();
+			}
+		}
+	
 	protected:
 
 		void on_initialize() override;
@@ -65,5 +79,8 @@ namespace real_tournament
 
 		/** The number of times this character has jumped since touching the ground. */
 		uint32 _num_jumps = 0;
+
+		/** The amount of health this character has. */
+		float _health = 100;
 	};
 }

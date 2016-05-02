@@ -29,6 +29,9 @@
     <ClInclude Include="include\RealTournament\ShotgunProjectile.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\RealTournament\Pickup.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Weapon.cpp">

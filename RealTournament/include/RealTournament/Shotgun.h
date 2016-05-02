@@ -18,8 +18,10 @@ namespace real_tournament
 		///   Methods   ///
 	public:
 
-		void on_spawn() override;
-
 		void fire() override;
+
+	protected:
+
+		void on_spawn() override;
 	};
 }

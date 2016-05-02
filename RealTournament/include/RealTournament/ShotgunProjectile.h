@@ -16,10 +16,18 @@ namespace real_tournament
 
 		///////////////////
 		///   Methods   ///
+	public:
+
+		void on_collision(Entity& entity, const CollisionData& info) override;
+
 	protected:
 
 		void on_spawn() override;
 
-		void on_collision(Entity& collidee) override;
+		////////////////
+		///   Data   ///
+	public:
+
+		int _bounces = 0;
 	};
 }
