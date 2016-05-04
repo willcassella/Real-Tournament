@@ -9,7 +9,7 @@
 
 BUILD_REFLECTION(real_tournament::SpawnPad)
 .Field("spawn_type", &SpawnPad::spawn_type)
-.Field("spawn_offset", &SpawnPad::spawn_offset)
+.Field("vertical_offset", &SpawnPad::vertical_offset)
 .Field("spawn_timer_start", &SpawnPad::spawn_timer_start)
 .Field("spawn_timer", &SpawnPad::spawn_timer);
 
@@ -37,7 +37,7 @@ namespace real_tournament
 		if (!this->spawn_type.is_null())
 		{
 			auto& object = this->get_world().spawn(this->spawn_type);
-			object.set_world_location(this->get_world_location() + this->spawn_offset);
+			object.set_world_location(this->get_world_location() + Vec3{0, vertical_offset, 0});
 			
 			// Special case for spawning pickups
 			if (auto pickup = Cast<Pickup>(object))

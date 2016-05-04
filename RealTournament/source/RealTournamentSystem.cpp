@@ -30,18 +30,21 @@ namespace real_tournament
 			case 0:
 				playerID = 1;
 				_player_one_object = player;
+				player.get_world().get_object(player.view)->orientation = CameraComponent::SplitScreenOrientation::Top;
 				break;
 
 			// Player one was the last one killed, so player two should spawn first (they've been dead for longer)
 			case 1:
 				playerID = 2;
 				_player_two_object = player;
+				player.get_world().get_object(player.view)->orientation = CameraComponent::SplitScreenOrientation::Bottom;
 				break;
 
 			// Player two was the last one killed, similar to above
 			case 2:
 				playerID = 1;
 				_player_one_object = player;
+				player.get_world().get_object(player.view)->orientation = CameraComponent::SplitScreenOrientation::Top;
 				break;
 			}
 		}
@@ -50,12 +53,14 @@ namespace real_tournament
 		{
 			playerID = 1;
 			_player_one_object = player;
+			player.get_world().get_object(player.view)->orientation = CameraComponent::SplitScreenOrientation::Top;
 		}
 		// Player two hasn't spawned yet
 		else
 		{
 			playerID = 2;
 			_player_two_object = player;
+			player.get_world().get_object(player.view)->orientation = CameraComponent::SplitScreenOrientation::Bottom;
 		}
 
 		// Bind events for the player

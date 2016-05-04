@@ -19,22 +19,6 @@ namespace real_tournament
 	///////////////////
 	///   Methods   ///
 
-	void Player::on_initialize()
-	{
-		this->Base::on_initialize();
-
-		auto* system = this->get_world().get_system<RealTournamentSystem>();
-
-		if (!system)
-		{
-			// Memory leak, WHO CARES!
-			system = new RealTournamentSystem();
-			this->get_world().add_system(*system);
-		}
-
-		system->on_player_spawn(*this);
-	}
-
 	void Player::on_spawn()
 	{
 		this->Base::on_spawn();
@@ -75,6 +59,18 @@ namespace real_tournament
 		auto& model = this->connect<StaticMeshComponent>();
 		model.mesh = "ExportedContent/Meshes/Player.wmesh"_p;
 		model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Black.psd");
+
+		// Get the RealTournament system for this game
+		auto* system = this->get_world().get_system<RealTournamentSystem>();
+
+		if (!system)
+		{
+			// Memory leak, WHO CARES!
+			system = new RealTournamentSystem();
+			this->get_world().add_system(*system);
+		}
+
+		system->on_player_spawn(*this);
 	}
 
 	void Player::on_destroy()

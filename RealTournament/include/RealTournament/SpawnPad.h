@@ -40,8 +40,8 @@ namespace real_tournament
 		/** The type of Entity to spawn. */
 		SubClassOf<Entity> spawn_type;
 
-		/** The location offset to spawn this object at. */
-		Vec3 spawn_offset = {0, 3, 0};
+		/** The vertical offset to spawn the object at. */
+		float vertical_offset = 3.f;
 
 		/** The amount of time that passes between each spawn ('0' for no timer, only spawns when told). */
 		float spawn_timer_start = 0.f;

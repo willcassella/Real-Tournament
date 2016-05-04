@@ -59,8 +59,6 @@ namespace real_tournament
 
 	protected:
 
-		void on_initialize() override;
-
 		void on_spawn() override;
 
 		void on_destroy() override;
