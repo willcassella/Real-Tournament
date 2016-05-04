@@ -32,6 +32,12 @@
     <ClInclude Include="include\RealTournament\Pickup.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\RealTournament\RealTournamentSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RealTournament\Helmet.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Weapon.cpp">
@@ -50,6 +56,15 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\ShotgunProjectile.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RealTournamentSystem.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Pickup.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Helmet.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

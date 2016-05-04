@@ -4,12 +4,13 @@
 #include "../include/RealTournament/Player.h"
 #include "../include/RealTournament/Shotgun.h"
 #include <Engine/Components/Rendering/AnimationComponent.h>
+#include "../include/RealTournament/RealTournamentSystem.h"
+#include "../include/RealTournament/Helmet.h"
 
 //////////////////////
 ///   Reflection   ///
 
 BUILD_REFLECTION(real_tournament::Player)
-.Field("health", &Player::_health)
 .Field("view", &Player::view)
 .Field("capsule", &Player::capsule);
 
@@ -21,11 +22,17 @@ namespace real_tournament
 	void Player::on_initialize()
 	{
 		this->Base::on_initialize();
-		this->get_world().bind_event("update", *this, &Player::on_update);
-		this->get_world().bind_event("move", *this, &Player::on_move);
-		this->get_world().bind_event("look", *this, &Player::on_look);
-		this->get_world().bind_event("jump", *this, &Player::on_jump);
-		this->get_world().bind_event("fire", *this, &Player::on_fire);
+
+		auto* system = this->get_world().get_system<RealTournamentSystem>();
+
+		if (!system)
+		{
+			// Memory leak, WHO CARES!
+			system = new RealTournamentSystem();
+			this->get_world().add_system(*system);
+		}
+
+		system->on_player_spawn(*this);
 	}
 
 	void Player::on_spawn()
@@ -62,11 +69,53 @@ namespace real_tournament
 		weapon.animation = animation;
 		animation.animation = "Content/Animations/gun_walk.wanim"_p;
 		animation.clip_mode = Animation::ClipMode::Ping_Pong;
+		animation.play_speed = 0;
 
 		// Set up model
-		//auto& model = this->connect<StaticMeshComponent>();
-		//model.mesh = "ExportedContent/Meshes/Player.wmesh"_p;
-		//model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Black.psd");
+		auto& model = this->connect<StaticMeshComponent>();
+		model.mesh = "ExportedContent/Meshes/Player.wmesh"_p;
+		model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Black.psd");
+	}
+
+	void Player::on_destroy()
+	{
+		this->Base::on_destroy();
+		this->get_world().get_system<RealTournamentSystem>()->on_player_death(*this);
+	}
+
+	Helmet* Player::get_top_helmet()
+	{
+		// Get the first helmet
+		auto* helmet = this->first_helmet.get_object(this->get_world());
+		
+		// If we're not wearing any helmets
+		if (!helmet)
+		{
+			return nullptr;
+		}
+
+		while (!helmet->next_helmet.is_null())
+		{
+			helmet = helmet->next_helmet.get_object(this->get_world());
+		}
+
+		return helmet;
+	}
+
+	void Player::apply_damage()
+	{
+		// Get the top helmet
+		auto* helmet = get_top_helmet();
+		
+		// If we're not wearing any helmets, we're dead
+		if (helmet == nullptr)
+		{
+			this->destroy();
+		}
+		else
+		{
+			helmet->drop();
+		}
 	}
 
 	void Player::on_update(float dt)
@@ -77,6 +126,9 @@ namespace real_tournament
 		{
 			this->_num_jumps = 0;
 		}
+
+		// Stupid, need to figure out a better way of solving this
+		this->STUPID_update_children_physics_transform();
 	}
 
 	void Player::on_move(Vec2 dir)

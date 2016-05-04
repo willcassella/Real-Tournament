@@ -157,6 +157,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\RealTournament\Helmet.h" />
+    <ClInclude Include="include\RealTournament\RealTournamentSystem.h" />
     <ClInclude Include="include\RealTournament\Pickup.h" />
     <ClInclude Include="include\RealTournament\Projectile.h" />
     <ClInclude Include="include\RealTournament\Player.h" />
@@ -166,8 +168,11 @@
     <ClInclude Include="include\RealTournament\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Helmet.cpp" />
+    <ClCompile Include="source\Pickup.cpp" />
     <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Projectile.cpp" />
+    <ClCompile Include="source\RealTournamentSystem.cpp" />
     <ClCompile Include="source\Shotgun.cpp" />
     <ClCompile Include="source\ShotgunProjectile.cpp" />
     <ClCompile Include="source\SpawnPad.cpp" />

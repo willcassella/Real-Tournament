@@ -2,6 +2,7 @@
 
 #include <Engine/World.h>
 #include "../include/RealTournament/SpawnPad.h"
+#include "../include/RealTournament/Pickup.h"
 
 //////////////////////
 ///   Reflection   ///
@@ -37,6 +38,13 @@ namespace real_tournament
 		{
 			auto& object = this->get_world().spawn(this->spawn_type);
 			object.set_world_location(this->get_world_location() + this->spawn_offset);
+			
+			// Special case for spawning pickups
+			if (auto pickup = Cast<Pickup>(object))
+			{
+				pickup->spawn_pad = *this;
+			}
+
 			return &object;
 		}
 		else

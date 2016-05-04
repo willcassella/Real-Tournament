@@ -25,7 +25,7 @@ namespace real_tournament
 			this->velocity = velocity.Reflect(info.normal);
 			_bounces++;
 
-			if (_bounces > 3)
+			if (_bounces > 10)
 			{
 				this->destroy();
 			}

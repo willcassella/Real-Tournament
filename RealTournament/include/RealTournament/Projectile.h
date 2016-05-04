@@ -20,9 +20,6 @@ namespace real_tournament
 		///   Fields   ///
 	public:
 
-		/** The amount of damage this projectile does when it hits a Player. */
-		float damage = 50;
-
 		/** The velocity of this projectile. */
 		Vec3 velocity;
 

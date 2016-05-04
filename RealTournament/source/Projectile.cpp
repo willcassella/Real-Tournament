@@ -7,8 +7,7 @@
 //////////////////////
 ///   Reflection   ///
 
-BUILD_REFLECTION(real_tournament::Projectile)
-.Field("damage", &Projectile::damage);
+BUILD_REFLECTION(real_tournament::Projectile);
 
 namespace real_tournament
 {
@@ -28,7 +27,7 @@ namespace real_tournament
 
 		if (auto player = Cast<Player>(entity))
 		{
-			player->apply_damage(this->damage);
+			player->apply_damage();
 			this->destroy();
 		}
 	}

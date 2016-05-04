@@ -36,33 +36,17 @@ namespace real_tournament
 		/** The character movement component. */
 		Handle<CharacterControllerComponent> character_movement;
 
+		/** The first helmet the player is wearing. */
+		Handle<class Helmet> first_helmet;
+
 		///////////////////
 		///   Methods   ///
 	public:
 
-		float get_health() const
-		{
-			return this->_health;
-		}
+		Helmet* get_top_helmet();
 
-		void apply_damage(float damage)
-		{
-			this->_health -= damage;
-
-			if (this->_health < 0)
-			{
-				this->destroy();
-			}
-		}
+		void apply_damage();
 	
-	protected:
-
-		void on_initialize() override;
-
-		void on_spawn() override;
-
-	private:
-
 		void on_update(float dt);
 
 		void on_move(Vec2 dir);
@@ -73,14 +57,19 @@ namespace real_tournament
 
 		void on_fire();
 
+	protected:
+
+		void on_initialize() override;
+
+		void on_spawn() override;
+
+		void on_destroy() override;
+
 		////////////////
 		///   Data   ///
 	private:
 
 		/** The number of times this character has jumped since touching the ground. */
 		uint32 _num_jumps = 0;
-
-		/** The amount of health this character has. */
-		float _health = 100;
 	};
 }
