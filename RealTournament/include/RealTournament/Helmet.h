@@ -28,6 +28,8 @@ namespace real_tournament
 		/** Drops the helmet. */
 		void drop();
 
+		void wobble(Vec2 dir);
+
 		void on_collision(Entity& entity, const CollisionData& data) override;
 
 	protected:

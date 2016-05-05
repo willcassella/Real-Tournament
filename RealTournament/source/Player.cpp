@@ -135,6 +135,11 @@ namespace real_tournament
 
 		auto* animation = weapon.get_object(this->get_world())->animation.get_object(this->get_world());
 		animation->play_speed = dir.Length();
+
+		if (!first_helmet.is_null())
+		{
+			first_helmet.get_object(this->get_world())->wobble(dir * -2);
+		}
 	}
 
 	void Player::on_look(Vec2 dir)

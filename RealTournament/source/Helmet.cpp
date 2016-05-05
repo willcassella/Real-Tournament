@@ -43,6 +43,16 @@ namespace real_tournament
 		this->set_parent(nullptr, SP_Keep_World_Offset);
 	}
 
+	void Helmet::wobble(Vec2 dir)
+	{
+		this->set_rotation(Quat{ Vec3{ dir.Y, 0, dir.X}.Normalize() , degrees(dir.Length()) });
+
+		if (!next_helmet.is_null())
+		{
+			next_helmet.get_object(this->get_world())->wobble(dir);
+		}
+	}
+
 	void Helmet::on_collision(Entity& entity, const CollisionData& data)
 	{
 		this->Base::on_collision(entity, data);
@@ -71,31 +81,20 @@ namespace real_tournament
 		constexpr auto Helmet_Step = 0.25f;
 		constexpr auto Helmet_Start = 1.25f;
 
-		this->set_parent(&player, SP_Move_To_Origin);
+		auto top = player.get_top_helmet();
 
-		// Get the top helmet
-		if (player.first_helmet.is_null())
+		if (!top)
 		{
+			this->set_parent(&player, SP_Move_To_Origin);
+			this->set_location(Vec3{ 0, Helmet_Start, 0 });
 			player.first_helmet = *this;
-			this->set_location({ 0, Helmet_Start, 0 });
-			return;
 		}
-
-		Vec3 offset{ 0, Helmet_Start + Helmet_Step, 0 };
-		auto* helmet = player.first_helmet.get_object(this->get_world());
-		while (true)
+		else
 		{
-			if (helmet->next_helmet.is_null())
-			{
-				helmet->next_helmet = *this;
-				this->previous_helmet = *helmet;
-				this->set_location(offset);
-				this->set_rotation(Quat{ Vec3::Up, static_cast<float>(rand() % 360) });
-				break;
-			}
-
-			offset.Y += Helmet_Step;
-			helmet = helmet->next_helmet.get_object(this->get_world());
+			this->set_parent(top, SP_Move_To_Origin);
+			this->set_location(Vec3{ 0, Helmet_Step, 0 });
+			top->next_helmet = *this;
+			this->previous_helmet = *top;
 		}
 	}
 
