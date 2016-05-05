@@ -29,7 +29,7 @@ namespace real_tournament
 		this->view = view;
 		view.get_entity().set_location({ 0, 0.9f, 0 });
 		view.fov = degrees(110.f);
-		view.z_max = 250.f;
+		view.z_max = 500.f;
 
 		// Set up the collider
 		auto& capsule = this->connect<CapsuleColliderComponent>();
@@ -59,7 +59,7 @@ namespace real_tournament
 		// Set up model
 		auto& model = this->connect<StaticMeshComponent>();
 		model.mesh = "ExportedContent/Meshes/Player.wmesh"_p;
-		model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Player.jpg"_p);
+		model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/player_final.png"_p);
 
 		// Get the RealTournament system for this game
 		auto* system = this->get_world().get_system<RealTournamentSystem>();

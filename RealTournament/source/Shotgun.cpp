@@ -38,6 +38,6 @@ namespace real_tournament
 		this->model = model;
 
 		model.mesh = "ExportedContent/Meshes/Shotgun.wmesh"_p;
-		model.instance_params["diffuse"] = ResourceHandle<Texture>{ "Content/Textures/Weapons/MetalBare0154_1_L.jpg"_p };
+		model.instance_params["diffuse"] = ResourceHandle<Texture>{ "Content/Textures/Weapons/shotgun_final.png"_p };
 	}
 }

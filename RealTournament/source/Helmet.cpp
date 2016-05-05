@@ -60,7 +60,7 @@ namespace real_tournament
 		this->set_physics_mode(PhysicsMode::Ghost);
 		auto& mesh = this->connect<StaticMeshComponent>();
 		mesh.mesh = "ExportedContent/Meshes/Helmet.wmesh"_p;
-		mesh.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Helmet.jpg"_p);
+		mesh.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/helmet_final.png"_p);
 
 		auto& sphere = this->connect<SphereColliderComponent>();
 		sphere.set_radius(0.35f);
@@ -90,6 +90,7 @@ namespace real_tournament
 				helmet->next_helmet = *this;
 				this->previous_helmet = *helmet;
 				this->set_location(offset);
+				this->set_rotation(Quat{ Vec3::Up, static_cast<float>(rand() % 360) });
 				break;
 			}
 
