@@ -36,7 +36,7 @@ namespace real_tournament
 	{
 		if (!spawn_pad.is_null())
 		{
-			this->rotate(Vec3::Up, degrees(dt * 10));
+			this->rotate(Vec3::Up, degrees(dt * 25));
 		}
 	}
 }

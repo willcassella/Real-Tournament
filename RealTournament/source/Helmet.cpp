@@ -63,13 +63,13 @@ namespace real_tournament
 		mesh.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Helmet.jpg"_p);
 
 		auto& sphere = this->connect<SphereColliderComponent>();
-		sphere.set_radius(0.55f);
+		sphere.set_radius(0.35f);
 	}
 
 	void Helmet::on_pickup(Player& player)
 	{
-		constexpr auto Helmet_Step = 0.55f;
-		constexpr auto Helmet_Start = 1.5f;
+		constexpr auto Helmet_Step = 0.25f;
+		constexpr auto Helmet_Start = 1.25f;
 
 		this->set_parent(&player, SP_Move_To_Origin);
 

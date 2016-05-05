@@ -20,7 +20,7 @@ namespace real_tournament
 		this->Base::on_collision(entity, info);
 
 		// DO NOT reflect on collisions with other projectiles, that just gets too crazy
-		if (!Cast<Projectile>(entity))
+		if (!IsCastableTo<Projectile>(entity))
 		{
 			this->velocity = velocity.Reflect(info.normal);
 			_bounces++;

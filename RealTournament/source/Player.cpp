@@ -27,8 +27,9 @@ namespace real_tournament
 		this->set_physics_mode(PhysicsMode::Ghost);
 		auto& view = this->attach<CameraComponent>();
 		this->view = view;
-		view.get_entity().set_location({ 0, 1, 0 });
+		view.get_entity().set_location({ 0, 0.9f, 0 });
 		view.fov = degrees(110.f);
+		view.z_max = 250.f;
 
 		// Set up the collider
 		auto& capsule = this->connect<CapsuleColliderComponent>();
@@ -58,7 +59,7 @@ namespace real_tournament
 		// Set up model
 		auto& model = this->connect<StaticMeshComponent>();
 		model.mesh = "ExportedContent/Meshes/Player.wmesh"_p;
-		model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Black.psd");
+		model.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Player.jpg"_p);
 
 		// Get the RealTournament system for this game
 		auto* system = this->get_world().get_system<RealTournamentSystem>();
@@ -129,7 +130,7 @@ namespace real_tournament
 
 	void Player::on_move(Vec2 dir)
 	{
-		Vec3 direction = Mat4::Rotate(this->get_world().get_object(this->view)->get_entity().get_world_rotation()) * Vec3{ dir.X, 0, -dir.Y };
+		Vec3 direction = Mat4::Rotate(this->get_world_rotation()) * Vec3{ dir.X, 0, -dir.Y };
 		this->get_world().get_object(this->character_movement)->walk(Vec2{ direction.X, direction.Z } / 5);
 
 		auto* animation = weapon.get_object(this->get_world())->animation.get_object(this->get_world());
@@ -138,8 +139,8 @@ namespace real_tournament
 
 	void Player::on_look(Vec2 dir)
 	{
+		this->rotate_global(Vec3::Up, dir.X);
 		auto view = get_world().get_object(this->view);
-		view->get_entity().rotate_global(Vec3::Up, dir.X);
 		view->get_entity().rotate(Vec3::Right, dir.Y);
 	}
 
