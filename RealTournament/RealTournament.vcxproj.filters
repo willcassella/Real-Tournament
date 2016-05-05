@@ -38,6 +38,9 @@
     <ClInclude Include="include\RealTournament\Helmet.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\RealTournament\JumpBoots.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Weapon.cpp">
@@ -65,6 +68,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="source\Helmet.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\JumpBoots.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

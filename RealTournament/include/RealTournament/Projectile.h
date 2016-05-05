@@ -24,7 +24,7 @@ namespace real_tournament
 		Vec3 velocity;
 
 		/** The amount of time before this projectile is destroyed. */
-		float life = 10;
+		float life = 7.f;
 
 		///////////////////
 		///   Methods   ///

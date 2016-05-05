@@ -47,7 +47,7 @@ namespace real_tournament
 	{
 		this->Base::on_collision(entity, data);
 
-		if (spawn_pad.is_null() && !_dropped && !IsCastableTo<Player>(entity) && !IsCastableTo<Helmet>(entity))
+		if (spawn_pad.is_null() && !_dropped && !IsCastableTo<Player>(entity) && !IsCastableTo<Pickup>(entity))
 		{
 			this->drop();
 		}
@@ -63,13 +63,13 @@ namespace real_tournament
 		mesh.instance_params["diffuse"] = ResourceHandle<Texture>("Content/Textures/Props/Helmet.jpg"_p);
 
 		auto& sphere = this->connect<SphereColliderComponent>();
-		sphere.set_radius(0.6f);
+		sphere.set_radius(0.55f);
 	}
 
 	void Helmet::on_pickup(Player& player)
 	{
-		constexpr auto Helmet_Step = 0.65f;
-		constexpr auto Helmet_Start = 1.75f;
+		constexpr auto Helmet_Step = 0.55f;
+		constexpr auto Helmet_Start = 1.5f;
 
 		this->set_parent(&player, SP_Move_To_Origin);
 
